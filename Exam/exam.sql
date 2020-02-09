@@ -333,7 +333,7 @@ Example:
 
 DELIMITER $$
 CREATE FUNCTION udf_stadium_players_count(stadium_name VARCHAR(30))
-    RETURNS INT
+    RETURNS INT DETERMINISTIC
 BEGIN
     DECLARE total INT;
     SET total := (SELECT COUNT(p.id)
@@ -345,6 +345,7 @@ BEGIN
     RETURN total;
 END;
 $$
+    SELECT udf_stadium_players_count ('Linklinks') as `count`;
 
 /*
  11. Find good playmaker by teams
